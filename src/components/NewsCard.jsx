@@ -32,7 +32,7 @@ export default function NewsCard(id) {
 			<div style={{display: "inline-block"}}>
 				<span>
 					<a href={story.url}>{story.title}</a>
-					({story.url})
+					{story.url ? `(${story.url})` : null }
 			</span>
 				<p>by {story.by} {story.time} | {story.descendants ? `${story.descendants} comments`: null}</p>
 			</div>

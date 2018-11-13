@@ -29,11 +29,11 @@ export default function Header() {
 }}>
 		<nav style={{height: "50px"}}>
 				<UL>
-					<ListItem><Link to="/">Home</Link></ListItem>
-					<ListItem>New</ListItem>
-					<ListItem>Show</ListItem>
-					<ListItem>Ask</ListItem>
-					<ListItem>Jobs</ListItem>
+					<Link to="/"><ListItem>Home</ListItem></Link>
+					<Link to="/new"><ListItem>New</ListItem></Link>
+					<Link to="/show"><ListItem>Show</ListItem></Link>
+					<Link to="/ask"><ListItem>Ask</ListItem></Link>
+					<Link to="/jobs"><ListItem>Jobs</ListItem></Link>
 				</UL>
 		</nav>
 		</header>
