@@ -15,7 +15,7 @@ function useItemSubscription(id) {
 		return () => {
 			ref.off()
 		}
-	}, [])
+	}, [id])
 	return story
 }
 
