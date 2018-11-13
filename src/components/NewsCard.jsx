@@ -2,24 +2,39 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { itemRef } from '../firebase'
 
-export default function NewsCard(props) {
+function useItemSubscription(id) {
 	const [story, setStory] = useState({})
 
+	useEffect(() => {
+		// console.log('itemsub useEffect running')
+		const ref = itemRef(id)
+		ref.on('value', snapshot => setStory(snapshot.val()))
+
+		return () => {
+			ref.off()
+		}
+	}, [])
+	return story
+}
+
+export default function NewsCard(id) {
+	const story = useItemSubscription(id)
 	return (
-		<div key={props.id}>
+		<div key={id}>
 			<div style={{
 				padding: "20px",
 				display: "inline-block"
 			}}>
-			{props.score}
+			{story.score}
 			</div>
 			<div style={{display: "inline-block"}}>
 				<span>
-					<a href={props.url}>{props.title}</a>
-					({props.url})
+					<a href={story.url}>{story.title}</a>
+					({story.url})
 			</span>
-				<p>by {props.by} {props.time} | {props.descendants ? `${props.descendants} comments`: null}</p>
+				<p>by {story.by} {story.time} | {story.descendants ? `${story.descendants} comments`: null}</p>
 			</div>
 		</div>
 	)
