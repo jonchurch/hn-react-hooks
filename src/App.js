@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from './components/Home.jsx'
 import Header from './components/Header.jsx'
@@ -13,6 +13,7 @@ class App extends Component {
 		<Router>
 			<div className="App">
 		<Header />
+		<Switch>
 		<Route exact path="/" component={Home} />
 		<Route exact path="/top" component={Home} />
 		<Route exact path="/new" component={Home} />
@@ -20,6 +21,7 @@ class App extends Component {
 		<Route exact path="/ask" component={Home} />
 		<Route exact path="/jobs" component={Home} />
 		<Route component={NotFound} />
+		</Switch>
 			</div>
 		</Router>
     );
