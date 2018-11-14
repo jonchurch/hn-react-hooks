@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { itemRef } from '../firebase'
+import { host } from '../helpers'
 
 function useItemSubscription(id) {
 	const [story, setStory] = useState({})
@@ -34,7 +35,7 @@ export default function NewsCard(id) {
 			<div style={{display: "inline-block"}}>
 				<span>
 					<a href={story.url}>{story.title}</a>
-					{story.url ? `(${story.url})` : null }
+					{story.url ? ` (${host(story.url)})` : null }
 			</span>
 			<p>by {story.by} {story.time} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></p>
 			</div>
