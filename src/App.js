@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Home from './components/Home.jsx'
 import Header from './components/Header.jsx'
+import Home from './components/Home.jsx'
+import Item from './components/Item.jsx'
 // import './App.css';
 
 const NotFound = () => <h1>404</h1>
@@ -20,6 +21,7 @@ class App extends Component {
 		<Route exact path="/show" component={Home} />
 		<Route exact path="/ask" component={Home} />
 		<Route exact path="/jobs" component={Home} />
+		<Route exact path="/item/:id" component={Item} />
 		<Route component={NotFound} />
 		</Switch>
 			</div>

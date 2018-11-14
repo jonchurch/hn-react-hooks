@@ -10,8 +10,10 @@ function useItemSubscription(id) {
 	useEffect(() => {
 		// console.log('itemsub useEffect running')
 		const ref = itemRef(id)
-		ref.on('value', snapshot => setStory(snapshot.val()))
-
+		ref.on('value', snapshot => {
+			console.log(snapshot.val())
+			setStory(snapshot.val())
+		})
 		return () => {
 			ref.off()
 		}
@@ -34,7 +36,7 @@ export default function NewsCard(id) {
 					<a href={story.url}>{story.title}</a>
 					{story.url ? `(${story.url})` : null }
 			</span>
-				<p>by {story.by} {story.time} | {story.descendants ? `${story.descendants} comments`: null}</p>
+			<p>by {story.by} {story.time} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></p>
 			</div>
 		</div>
 	)
