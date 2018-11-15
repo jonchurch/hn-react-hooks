@@ -26,7 +26,7 @@ export default function Home({match}) {
 	let filter = storyFilter(path)
 	const stories = useTopStories(filter)
 	return (
-		<div>
+		<div style={{margin: "30px 0"}}>
 			{
 				stories.length > 0 && stories.map(NewsCard)
 			}
