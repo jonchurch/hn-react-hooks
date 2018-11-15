@@ -43,16 +43,15 @@ export default function NewsCard(id) {
 			{story.score}
 			</span>
 			<span className="title">
-				<span>
 					<a 
 						href={story.url}
 					>{story.title}</a>
 					{story.url ? <span className="host">{` (${host(story.url)})`}</span> : null }
-			</span>
-			<p
+				</span>
+				<br />
+			<span
 				className="meta"
-			>by {story.by} {timeAgo(story.time)} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></p>
-			</span>
+			>by {story.by} {timeAgo(story.time)} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></span>
 		</StyledItemCard>
 	)
 }
