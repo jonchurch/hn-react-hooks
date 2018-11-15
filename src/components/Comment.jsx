@@ -30,15 +30,18 @@ const CommentContainer = styled.div`
 	}
   }
 `
-
-export default function Comment(id) {
-	const comment = useItemSubscription(id)
-	if (comment.deleted) {
+/*
+ * Right now I think I'm running into issues where using hooks in my map is screwing something up
+ * It might just be the conditional expression?
+*/
+export default function Comment({id}) {
+	const { by, time, text, kids = [], deleted, dead } = useItemSubscription(id)
+	if (deleted) {
 		return (
 			<div key={id}>[deleted]</div>
 		)
 	}
-	if (comment.dead) {
+	if (dead) {
 		return (
 			<div key={id}>[dead]</div>
 		)
@@ -48,17 +51,18 @@ export default function Comment(id) {
 			key={id}
 		>
 			<div className="by">
-				{comment.by}
-				{comment.time && timeAgo(comment.time)} ago
+				{by}
+				{time && timeAgo(time)} ago
 			</div>
 			<div className="text">
-			{comment.text && renderHTML(comment.text)}
+			{text && renderHTML(text)}
 			</div>
 			<div>
-			{
-				//comment.kids && comment.kids.length > 0 && comment.kids.map(Comment)
-			}
+				{
+					kids.length ? kids.map(id => <Comment id={id} />) : null
+				}
 			</div>
 		</CommentContainer>
 	)
 }
+
