@@ -6,13 +6,24 @@ import { useItemSubscription } from '../hooks'
 
 export default function Comment(id) {
 	const comment = useItemSubscription(id)
-	console.log({comment})
+	if (comment.deleted) {
+		return (
+			<div key={id}>[deleted]</div>
+		)
+	}
+	if (comment.dead) {
+		return (
+			<div key={id}>[dead]</div>
+		)
+	}
 	return (
 		<div key={id}>
-			<p>{comment.by} {comment.time && timeAgo(comment.time)}</p>
+			<p>{comment.by} {comment.time && timeAgo(comment.time)} ago</p>
 			{comment.text && renderHTML(comment.text)}
 			<div>
-			>>>>{comment.kids && comment.kids.length > 0 && comment.kids.map(Comment)}
+			{
+				//comment.kids && comment.kids.length > 0 && comment.kids.map(Comment)
+			}
 			</div>
 		</div>
 	)

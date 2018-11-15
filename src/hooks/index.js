@@ -5,7 +5,6 @@ export function useItemSubscription(id) {
 	const [story, setStory] = useState({})
 
 	useEffect(() => {
-		// console.log('itemsub useEffect running')
 		const ref = itemRef(id)
 		ref.on('value', snapshot => {
 			console.log(snapshot.val())
