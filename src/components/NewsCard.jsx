@@ -2,25 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { itemRef } from '../firebase'
 import { host, timeAgo } from '../helpers'
-
-function useItemSubscription(id) {
-	const [story, setStory] = useState({})
-
-	useEffect(() => {
-		// console.log('itemsub useEffect running')
-		const ref = itemRef(id)
-		ref.on('value', snapshot => {
-			console.log(snapshot.val())
-			setStory(snapshot.val())
-		})
-		return () => {
-			ref.off()
-		}
-	}, [id])
-	return story
-}
+import { useItemSubscription } from '../hooks'
 
 export default function NewsCard(id) {
 	const story = useItemSubscription(id)
