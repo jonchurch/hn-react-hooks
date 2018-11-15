@@ -1,35 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import renderHTML from 'react-render-html'
 
-import { itemRef } from '../firebase'
-
-function useItemSubscription(id) {
-	const [story, setStory] = useState({})
-
-	useEffect(() => {
-		// console.log('itemsub useEffect running')
-		const ref = itemRef(id)
-		ref.on('value', snapshot => {
-			console.log(snapshot.val())
-			setStory(snapshot.val())
-		})
-		return () => {
-			ref.off()
-		}
-	}, [id])
-	return story
-}
+import { useItemSubscription } from '../hooks'
+import Comment from './Comment'
 
 export default function Item({match}) {
 	const id = match.params.id
-	const story = useItemSubscription(id)
-	console.log({story})
+	const { title, url, text, kids } = useItemSubscription(id)
 	return (
 		<div>
 			{
-				story.url ? <a href={story.url}>{story.title}</a> :
-							<p>{story.title}</p>
+				url ? <a href={url}>{title}</a> :
+							<p>{title}</p>
 			}
-		{story.text ? story.text : null}
+			{
+				text ?
+					renderHTML(text) : null}
+			{
+				kids && kids.length ? 
+					kids.map(Comment) : null
+			}
 	</div>
 	)
 }

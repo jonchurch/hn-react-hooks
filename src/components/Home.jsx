@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { useTopStories } from '../hooks'
 import NewsCard from './NewsCard.jsx'
 
 function storyFilter(path) {
-	let filter = path === "" ? "top" : path
 	switch (path) {
 		case "new":
 			return "newstories"
@@ -25,7 +24,6 @@ function storyFilter(path) {
 export default function Home({match}) {
 	const path = match.path.substring(1)
 	let filter = storyFilter(path)
-	console.log(filter)
 	const stories = useTopStories(filter)
 	return (
 		<div>
