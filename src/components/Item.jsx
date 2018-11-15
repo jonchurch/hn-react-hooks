@@ -7,7 +7,7 @@ import Comment from './Comment'
 
 export default function Item({match}) {
 	const id = match.params.id
-	const { title, by, url, time, text, kids = [], score } = useItemSubscription(id)
+	const { title, by, url, score, time, text, kids = [], descendants} = useItemSubscription(id)
 	return (
 		<div>
 			{
@@ -21,6 +21,7 @@ export default function Item({match}) {
 			}
 			<hr />
 			<div>
+				{descendants && descendants > 0 ? `${descendants} comments` : "No comments"}
 			{
 				kids.length ? 
 					kids.map(Comment) : null
