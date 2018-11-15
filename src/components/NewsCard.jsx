@@ -1,20 +1,36 @@
 import React from 'react'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
 import { host, timeAgo } from '../helpers'
 import { useItemSubscription } from '../hooks'
 
+const StyledItemCard = styled.div`
+	background-color: #fff;
+	padding: 20px 30px 20px 80px;
+	line-height: 20px;
+	position: relative;
+
+	.score {
+		color: #f60;
+		position: absolute;
+		font-size: 1.1em;
+		font-weight: 700;
+		top: 50%;
+		left: 0;
+		width: 80px;
+		margin-top: -10px;
+		text-align: center;
+	}
+`
+
 export default function NewsCard(id) {
 	const story = useItemSubscription(id)
 	return (
-		<div key={id}>
-			<div style={{
-				padding: "20px",
-				display: "inline-block"
-			}}>
+		<StyledItemCard key={id}>
+			<span className="score">
 			{story.score}
-			</div>
-			<div style={{display: "inline-block"}}>
+			</span>
+			<span className="title">
 				<span>
 					<a 
 						href={story.url}
@@ -25,8 +41,8 @@ export default function NewsCard(id) {
 			<p
 				style={{color: "#828282"}}
 			>by {story.by} {timeAgo(story.time)} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></p>
-			</div>
-		</div>
+			</span>
+		</StyledItemCard>
 	)
 }
 
