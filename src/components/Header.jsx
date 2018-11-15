@@ -8,7 +8,6 @@ const ListItem = styled.li`
 	text-align: center;
 	font-size: 16px;
 	font-weight: 400px;
-	letter-spacing: 0px;
 	line-height: 1.2;
 	`;
 
@@ -21,13 +20,32 @@ const UL= styled.ul`
 	overflow: hidden;
 `
 
+const StyledHeader = styled.header`
+	background-color: #ff6600;
+	z-index: 999;
+	height: 55px;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	.inner {
+		max-width: 800px;
+		box-sizing: border-box;
+		margin: 0px auto;
+		padding: 15px 5px;
+	}
+	a {
+		color: rgba(255, 255, .8);
+		line-height: 24px;
+		vertical-align: middle;
+		letter-spacing: .075em;
+	}
+`
+
 export default function Header() {
 	return (
-		<header style={{
-	backgroundColor: "rgba(239, 99, 48, 1.00)",
-	overflow: "visible"
-}}>
-		<nav style={{height: "50px"}}>
+		<StyledHeader>
+		<nav className="inner" >
 				<UL>
 					<Link to="/"><ListItem>Home</ListItem></Link>
 					<Link to="/new"><ListItem>New</ListItem></Link>
@@ -36,7 +54,7 @@ export default function Header() {
 					<Link to="/jobs"><ListItem>Jobs</ListItem></Link>
 				</UL>
 		</nav>
-		</header>
+		</StyledHeader>
 	)
 }
 
