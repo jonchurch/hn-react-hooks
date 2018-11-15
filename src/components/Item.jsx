@@ -20,10 +20,12 @@ export default function Item({match}) {
 					renderHTML(text) : null
 			}
 			<hr />
+			<div>
 			{
 				kids.length ? 
 					kids.map(Comment) : null
 			}
+		</div>
 	</div>
 	)
 }

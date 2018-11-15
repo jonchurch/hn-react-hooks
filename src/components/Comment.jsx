@@ -17,7 +17,10 @@ export default function Comment(id) {
 		)
 	}
 	return (
-		<div key={id}>
+		<div 
+			key={id}
+			style={{marginLeft: "1.5em"}}
+		>
 			<p>{comment.by} {comment.time && timeAgo(comment.time)} ago</p>
 			{comment.text && renderHTML(comment.text)}
 			<div>
