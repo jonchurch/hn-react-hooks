@@ -9,6 +9,7 @@ const StyledItemCard = styled.div`
 	padding: 20px 30px 20px 80px;
 	line-height: 20px;
 	position: relative;
+	border-bottom: 1px solid #eee
 
 	.score {
 		color: #f60;
@@ -20,6 +21,17 @@ const StyledItemCard = styled.div`
 		width: 80px;
 		margin-top: -10px;
 		text-align: center;
+		}
+	.meta, .host {
+		font-size: .85em;
+		color: #828282;
+		a {
+			color: #828282;
+			text-decoration: underline;
+			&:hover {
+				color: #ff6600
+			}
+		}
 	}
 `
 
@@ -34,12 +46,11 @@ export default function NewsCard(id) {
 				<span>
 					<a 
 						href={story.url}
-						style={{textDecoration: "none", color: "#000"}}
 					>{story.title}</a>
-					{story.url ? ` (${host(story.url)})` : null }
+					{story.url ? <span className="host">{` (${host(story.url)})`}</span> : null }
 			</span>
 			<p
-				style={{color: "#828282"}}
+				className="meta"
 			>by {story.by} {timeAgo(story.time)} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></p>
 			</span>
 		</StyledItemCard>
