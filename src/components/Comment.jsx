@@ -1,8 +1,35 @@
 import React  from 'react'
 import renderHTML from 'react-render-html'
+import styled from 'styled-components'
 
 import { timeAgo } from '../helpers'
 import { useItemSubscription } from '../hooks'
+
+const CommentContainer = styled.div`
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  position: relative;
+  .by, .text, .toggle {
+    font-size: .9em;
+	margin: 1em 0;
+  }
+  .by {
+    color: #828282;
+	a {
+      color: #828282;
+      text-decoration: underline;
+	}
+  }
+  .text {
+    overflow-wrap break-word
+	a:hover {
+      color #ff6600
+	}
+	pre {
+	  white-space pre-wrap	
+	}
+  }
+`
 
 export default function Comment(id) {
 	const comment = useItemSubscription(id)
@@ -17,17 +44,21 @@ export default function Comment(id) {
 		)
 	}
 	return (
-		<div 
+		<CommentContainer
 			key={id}
-			style={{marginLeft: "1.5em"}}
 		>
-			<p>{comment.by} {comment.time && timeAgo(comment.time)} ago</p>
+			<div className="by">
+				{comment.by}
+				{comment.time && timeAgo(comment.time)} ago
+			</div>
+			<div className="text">
 			{comment.text && renderHTML(comment.text)}
+			</div>
 			<div>
 			{
 				//comment.kids && comment.kids.length > 0 && comment.kids.map(Comment)
 			}
 			</div>
-		</div>
+		</CommentContainer>
 	)
 }
