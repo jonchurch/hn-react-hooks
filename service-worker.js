@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/hn-react-hooks/precache-manifest.4ed32d6d44be0182e9e9c2224981c721.js"
+  "https://jonchurch.github.io/hn-react-hooks/precache-manifest.18cf45a3c3c7e77ed1944fa876dfa2ed.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/hn-react-hooks/index.html", {
+workbox.routing.registerNavigationRoute("https://jonchurch.github.io/hn-react-hooks/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
