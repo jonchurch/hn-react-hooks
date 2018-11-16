@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { useState } from 'react'
 import renderHTML from 'react-render-html'
 import styled from 'styled-components'
 
@@ -29,13 +29,45 @@ const CommentContainer = styled.div`
 	  white-space pre-wrap	
 	}
   }
+  .toggle {
+	background-color: #ff6600;
+	padding: .3em .5em;
+	border-radius: 4px;
+	&.open {
+		padding: 0;
+		background-color: transparent;
+		margin-bottom: -0.5em;
+	}
+  }
 `
+const CommentChildren = styled.div`
+	${props => props.open ? null : "display: none;"}
+	margin-left: 1.5em;
+`
+
+function Toggle({open, onClick}) {
+	return (
+		<div 
+			className={`toggle ${open ? "open" : null }`}
+			onClick={onClick}
+		>
+		{ open ? "[-]" : `[+]` }
+		</div>
+	)
+}
+
 /*
  * Right now I think I'm running into issues where using hooks in my map is screwing something up
  * It might just be the conditional expression?
+ * Nope! It was because I was calling the function? and not using a component?
 */
 export default function Comment({id}) {
 	const { by, time, text, kids = [], deleted, dead } = useItemSubscription(id)
+	const [isOpen, setOpen] = useState(true)
+	function handleClick() {
+		console.log('clicky click')
+		setOpen(!isOpen)
+	}
 	if (deleted) {
 		return (
 			<div key={id}>[deleted]</div>
@@ -56,12 +88,15 @@ export default function Comment({id}) {
 			</div>
 			<div className="text">
 			{text && renderHTML(text)}
-			</div>
-			<div>
+		</div>
+		{
+			kids.length ? <Toggle open={isOpen} onClick={handleClick}/> : null
+		}
+			<CommentChildren open={isOpen}>
 				{
 					kids.length ? kids.map(id => <Comment id={id} />) : null
 				}
-			</div>
+			</CommentChildren>
 		</CommentContainer>
 	)
 }
