@@ -30,7 +30,7 @@ const CommentContainer = styled.div`
 	}
   }
   .toggle {
-	background-color: #ff6600;
+	background-color: #fffbf2;
 	padding: .3em .5em;
 	border-radius: 4px;
 	&.open {
@@ -45,13 +45,13 @@ const CommentChildren = styled.div`
 	margin-left: 1.5em;
 `
 
-function Toggle({open, onClick}) {
+function Toggle({open, onClick, kidCount }) {
 	return (
 		<div 
 			className={`toggle ${open ? "open" : null }`}
 			onClick={onClick}
 		>
-		{ open ? "[-]" : `[+]` }
+		{ open ? "[-]" : `[+] ${kidCount} replies collapsed` }
 		</div>
 	)
 }
@@ -90,7 +90,7 @@ export default function Comment({id}) {
 			{text && renderHTML(text)}
 		</div>
 		{
-			kids.length ? <Toggle open={isOpen} onClick={handleClick}/> : null
+			kids.length ? <Toggle open={isOpen} onClick={handleClick} kidCount={kids.length}/> : null
 		}
 			<CommentChildren open={isOpen}>
 				{
