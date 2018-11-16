@@ -51,14 +51,14 @@ export default function Header() {
 	return (
 		<StyledHeader>
 			<nav className="inner" >
-				<Link to="/">
+                <Link to={process.env.PUBLIC_URL + "/"}>
 					<img src={Logo} alt="Hacker News Logo" className="logo"/>
 				</Link>
-				<NavLink exact to="/" activeClassName="active">Top</NavLink>
-				<NavLink to="/new" activeClassName="active">New</NavLink>
-				<NavLink to="/show" activeClassName="active">Show</NavLink>
-				<NavLink to="/ask" activeClassName="active">Ask</NavLink>
-				<NavLink to="/jobs" activeClassName="active">Jobs</NavLink>
+				<NavLink exact to={process.env.PUBLIC_URL + "/"} activeClassName="active">Top</NavLink>
+				<NavLink to={process.env.PUBLIC_URL + "/new"} activeClassName="active">New</NavLink>
+				<NavLink to={process.env.PUBLIC_URL + "/show"} activeClassName="active">Show</NavLink>
+				<NavLink to={process.env.PUBLIC_URL + "/ask"} activeClassName="active">Ask</NavLink>
+				<NavLink to={process.env.PUBLIC_URL + "/jobs"} activeClassName="active">Jobs</NavLink>
 		</nav>
 		</StyledHeader>
 	)
