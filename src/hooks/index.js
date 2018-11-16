@@ -7,8 +7,11 @@ export function useItemSubscription(id) {
 	useEffect(() => {
 		const ref = itemRef(id)
 		ref.on('value', snapshot => {
-			//console.log(snapshot.val())
-			setStory(snapshot.val())
+			console.log('snapshot val:',snapshot.val())
+			const val = snapshot.val()
+			if (val !== null) {
+				setStory(snapshot.val())
+			}
 		})
 		return () => {
 			ref.off()

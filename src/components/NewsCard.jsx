@@ -36,10 +36,11 @@ const StyledItemCard = styled.div`
 	}
 `
 
-export default function NewsCard(id) {
+export default function NewsCard({id}) {
 	const story = useItemSubscription(id)
+	console.log({story})
 	return (
-		<StyledItemCard key={id}>
+		<StyledItemCard>
 			<span className="score">
 			{story.score}
 			</span>
