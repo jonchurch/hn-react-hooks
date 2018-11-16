@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { host, timeAgo } from '../helpers'
 import { useItemSubscription } from '../hooks'
@@ -51,7 +52,7 @@ export default function NewsCard(id) {
 				<br />
 			<span
 				className="meta"
-			>by {story.by} {timeAgo(story.time)} | <a href={`item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</a></span>
+			>by {story.by} {timeAgo(story.time)} | <Link to={`/item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</Link></span>
 		</StyledItemCard>
 	)
 }
