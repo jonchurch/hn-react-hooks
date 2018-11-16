@@ -7,7 +7,7 @@ export function useItemSubscription(id) {
 	useEffect(() => {
 		const ref = itemRef(id)
 		ref.on('value', snapshot => {
-			console.log('snapshot val:',snapshot.val())
+			// console.log('snapshot val:',snapshot.val())
 			const val = snapshot.val()
 			if (val !== null) {
 				setStory(snapshot.val())
@@ -20,12 +20,16 @@ export function useItemSubscription(id) {
 	return story
 }
 
-export function useTopStories(filter) {
+export function useTopStories(filter, page = 0) {
 	const [stories, setStories] = useState({})
+	const maxPerPage = 30
+	const start = maxPerPage * page
+	const end = start + maxPerPage
 	useEffect(() => {
 		const ref = storiesRef(filter)
 		ref.on('value', snapshot => {
-			const ids = snapshot.val().slice(0, 30)
+			console.log({start, end})
+			const ids = snapshot.val().slice(start, end)
 			setStories(ids)
 		})
 		return () => {

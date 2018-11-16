@@ -24,8 +24,9 @@ function storyFilter(path) {
 
 export default function Home({match}) {
 	const path = match.path.substring(1)
+	const page = match.params.page
 	let filter = storyFilter(path)
-	const stories = useTopStories(filter)
+	const stories = useTopStories(filter, page)
 	return (
 		<Flipper flipKey={filter}>
 		<div style={{margin: "30px 0"}}>
