@@ -1,13 +1,13 @@
 {
-  "main.css": "https://jonchurch.github.io/hn-react-hooks/static/css/main.5e9c40f6.chunk.css",
-  "main.js": "https://jonchurch.github.io/hn-react-hooks/static/js/main.fced32de.chunk.js",
-  "main.js.map": "https://jonchurch.github.io/hn-react-hooks/static/js/main.fced32de.chunk.js.map",
-  "static/js/1.fdd5c3e3.chunk.js": "https://jonchurch.github.io/hn-react-hooks/static/js/1.fdd5c3e3.chunk.js",
-  "static/js/1.fdd5c3e3.chunk.js.map": "https://jonchurch.github.io/hn-react-hooks/static/js/1.fdd5c3e3.chunk.js.map",
-  "runtime~main.js": "https://jonchurch.github.io/hn-react-hooks/static/js/runtime~main.a363e621.js",
-  "runtime~main.js.map": "https://jonchurch.github.io/hn-react-hooks/static/js/runtime~main.a363e621.js.map",
-  "static/css/main.5e9c40f6.chunk.css.map": "https://jonchurch.github.io/hn-react-hooks/static/css/main.5e9c40f6.chunk.css.map",
-  "index.html": "https://jonchurch.github.io/hn-react-hooks/index.html",
-  "precache-manifest.18cf45a3c3c7e77ed1944fa876dfa2ed.js": "https://jonchurch.github.io/hn-react-hooks/precache-manifest.18cf45a3c3c7e77ed1944fa876dfa2ed.js",
-  "service-worker.js": "https://jonchurch.github.io/hn-react-hooks/service-worker.js"
+  "main.css": "/hn-react-hooks/static/css/main.5e9c40f6.chunk.css",
+  "main.js": "/hn-react-hooks/static/js/main.c169c35f.chunk.js",
+  "main.js.map": "/hn-react-hooks/static/js/main.c169c35f.chunk.js.map",
+  "static/js/1.2c0e9405.chunk.js": "/hn-react-hooks/static/js/1.2c0e9405.chunk.js",
+  "static/js/1.2c0e9405.chunk.js.map": "/hn-react-hooks/static/js/1.2c0e9405.chunk.js.map",
+  "runtime~main.js": "/hn-react-hooks/static/js/runtime~main.4bdfb21f.js",
+  "runtime~main.js.map": "/hn-react-hooks/static/js/runtime~main.4bdfb21f.js.map",
+  "static/css/main.5e9c40f6.chunk.css.map": "/hn-react-hooks/static/css/main.5e9c40f6.chunk.css.map",
+  "index.html": "/hn-react-hooks/index.html",
+  "precache-manifest.c8ef0bf2d9d4503b42d15df3ed90df67.js": "/hn-react-hooks/precache-manifest.c8ef0bf2d9d4503b42d15df3ed90df67.js",
+  "service-worker.js": "/hn-react-hooks/service-worker.js"
 }
