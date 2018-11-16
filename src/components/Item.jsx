@@ -86,7 +86,7 @@ export default function Item({match}) {
 				</div>
 			{
 				kids.length ? 
-					kids.map(id => <Comment id={id} />) : null
+					kids.map(id => <Comment key={id} id={id} />) : null
 			}
 		</ItemComments>
 	</div>

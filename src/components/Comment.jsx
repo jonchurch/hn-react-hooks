@@ -34,9 +34,7 @@ const CommentContainer = styled.div`
 	padding: .3em .5em;
 	border-radius: 4px;
 	&.open {
-		padding: 0;
 		background-color: transparent;
-		margin-bottom: -0.5em;
 	}
   }
 `
@@ -47,12 +45,12 @@ const CommentChildren = styled.div`
 
 function Toggle({open, onClick, kidCount }) {
 	return (
-		<div 
+		<span
 			className={`toggle ${open ? "open" : null }`}
 			onClick={onClick}
 		>
-		{ open ? "[-]" : `[+] ${kidCount} replies collapsed` }
-		</div>
+		{ open ? "[-]" : `[+${kidCount + 1}]` }
+		</span>
 	)
 }
 
@@ -63,38 +61,37 @@ function Toggle({open, onClick, kidCount }) {
 */
 export default function Comment({id}) {
 	const { by, time, text, kids = [], deleted, dead } = useItemSubscription(id)
-	const [isOpen, setOpen] = useState(true)
-	function handleClick() {
-		console.log('clicky click')
-		setOpen(!isOpen)
+	const [showComments, setShowComments] = useState(true)
+	function handleCommentToggle() {
+		setShowComments(!showComments)
 	}
 	if (deleted) {
+		kids.length && console.log('Deleted has children!')
 		return (
-			<div key={id}>[deleted]</div>
+			<CommentContainer>
+				<div className="by">[deleted]</div>
+			</CommentContainer>
 		)
 	}
 	if (dead) {
+		kids.length && console.log('Dead has children!')
 		return (
-			<div key={id}>[dead]</div>
+			null
 		)
 	}
 	return (
-		<CommentContainer
-			key={id}
-		>
-			<div className="by">
+		<CommentContainer>
+			<div className={`by toggle ${showComments ? "open" : null}`}>
 				{by}
 				{time && timeAgo(time)} ago
+				<Toggle open={showComments} onClick={handleCommentToggle} kidCount={kids.length}/>
 			</div>
+			<CommentChildren open={showComments}>
 			<div className="text">
 			{text && renderHTML(text)}
 		</div>
-		{
-			kids.length ? <Toggle open={isOpen} onClick={handleClick} kidCount={kids.length}/> : null
-		}
-			<CommentChildren open={isOpen}>
 				{
-					kids.length ? kids.map(id => <Comment id={id} />) : null
+					kids.length ? kids.map(id => <Comment key={id} id={id} />) : null
 				}
 			</CommentChildren>
 		</CommentContainer>
