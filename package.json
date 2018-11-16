@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-	"predeploy": "PUBLIC_URL='/hn-react-hooks' npm run build",
+	"predeploy": "npm run build",
 	"deploy": "gh-pages -d build"
   },
   "eslintConfig": {

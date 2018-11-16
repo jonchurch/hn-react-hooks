@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Header from './components/Header'
@@ -18,7 +18,7 @@ const ContentView = styled.div`
 class App extends Component {
   render() {
     return (
-		<Router basename={process.env.PUBLIC_URL}>
+		<Router>
 			<div className="App">
 		<Header />
 		<ContentView>
