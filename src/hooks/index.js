@@ -7,7 +7,7 @@ export function useItemSubscription(id) {
 	useEffect(() => {
 		const ref = itemRef(id)
 		ref.on('value', snapshot => {
-			console.log(snapshot.val())
+			//console.log(snapshot.val())
 			setStory(snapshot.val())
 		})
 		return () => {
@@ -26,7 +26,6 @@ export function useTopStories(filter) {
 			setStories(ids)
 		})
 		return () => {
-			//cleanup listener we started
 			ref.off()
 		}
 	}, [filter])
