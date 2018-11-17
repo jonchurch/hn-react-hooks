@@ -10,6 +10,9 @@ const ItemHeader = styled.div`
   background-color: #fff;
   padding: 1.8em 2em 1em;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	padding-top: 55px;
+	position: relative;
+	margin: 30px 0;
 
   a {
 	color: #34495e;
@@ -27,6 +30,8 @@ const ItemHeader = styled.div`
 	text-decoration: underline;
 	}
   @media (max-width: 600px) {
+	margin: 10px 0;
+	padding-top: 75px
 	h1 {
 	 font-size: 1.25em;
 	}
