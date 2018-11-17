@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Flipper, Flipped } from 'react-flip-toolkit'
 import styled from 'styled-components'
 
 import { useTopStories } from '../hooks'
@@ -60,20 +59,12 @@ export default function Home({match}) {
 			</span>
 			<Link to={`/${filter}/${Number(page) + 1}`}>next &gt;</Link>
 			</div>
-		<Flipper flipKey={filter}>
 		<div className="list">
 			{
-				stories.length > 0 && 
-				stories.map(id => {
-					return (
-						<Flipped key={id} flipId={id.toString()}>
-						<NewsCard id={id} />
-					</Flipped>
-						)
-				})
+				stories.length && 
+				stories.map(id => <NewsCard id={id} key={id}/>)
 			}
 		</div>
-	</Flipper>
 </Container>
 	)	
 }
