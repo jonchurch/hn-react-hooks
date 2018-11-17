@@ -21,12 +21,13 @@ const CommentContainer = styled.div`
 	}
   }
   .text {
-    overflow-wrap break-word
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 	a:hover {
-      color #ff6600
+      color: #ff6600;
 	}
 	pre {
-	  white-space pre-wrap	
+	  white-space: pre-wrap;
 	}
   }
   .toggle {
