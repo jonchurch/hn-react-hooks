@@ -6,23 +6,6 @@ import styled from 'styled-components'
 import { useTopStories } from '../hooks'
 import NewsCard from './NewsCard.jsx'
 
-function storyFilter(path) {
-	switch (path) {
-		case "new":
-			return "newstories"
-		case "show":
-			return "showstories"
-		case "ask":
-			return "askstories"
-		case "jobs":
-			return "jobstories"
-		case "best":
-			return "beststories"
-		case "top":
-		default:
-			return "topstories"
-	}
-}
 const Container = styled.div`
 	position: relative;
 	
@@ -55,27 +38,26 @@ const Container = styled.div`
 	}
 	.disabled {
 		pointer-events: none;
-		color: grey
+		color: #d3d3d3;
 	}
 `
 
 export default function Home({match}) {
-	const path = match.path.substring(1)
+	const pathReg = new RegExp(/^\/(\w+)/)
+	const filter = pathReg.exec(match.url)[1]
 	const page = match.params.page || 1
-	console.log(typeof page)
-	let filter = storyFilter(path)
 	const stories = useTopStories(filter, page)
 	return (
 		<Container style={{position: "relative"}}>
 			<div className="list-nav">
 				<Link 
-					to={`/top/${page - 1}`}
+					to={`/${filter}/${page - 1}`}
 					className={page <= 1 ? "disabled" : null}
 				>&lt; prev</Link>
 			<span>
-				{page} / 24
+				{page}/24
 			</span>
-			<Link to={`/top/${Number(page) + 1}`}>next &gt;</Link>
+			<Link to={`/${filter}/${Number(page) + 1}`}>next &gt;</Link>
 			</div>
 		<Flipper flipKey={filter}>
 		<div className="list">

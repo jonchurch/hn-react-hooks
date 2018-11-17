@@ -21,15 +21,15 @@ export function useItemSubscription(id) {
 }
 
 export function useTopStories(filter, page = 1) {
+	const refPath = storyFilter(filter)
 	const [stories, setStories] = useState({})
 	const maxPerPage = 20
 	const start = maxPerPage * (page - 1)
 	const end = start + maxPerPage
 	console.log({start,end})
 	useEffect(() => {
-		const ref = storiesRef(filter)
+		const ref = storiesRef(refPath)
 		ref.on('value', snapshot => {
-			console.log({start, end})
 			const ids = snapshot.val().slice(start, end)
 			setStories(ids)
 		})
@@ -38,4 +38,21 @@ export function useTopStories(filter, page = 1) {
 		}
 	}, [filter, page])
 	return stories
+}
+function storyFilter(path) {
+	switch (path) {
+		case "new":
+			return "newstories"
+		case "show":
+			return "showstories"
+		case "ask":
+			return "askstories"
+		case "jobs":
+			return "jobstories"
+		case "best":
+			return "beststories"
+		case "top":
+		default:
+			return "topstories"
+	}
 }
