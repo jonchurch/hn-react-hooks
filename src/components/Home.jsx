@@ -44,7 +44,8 @@ const Container = styled.div`
 
 export default function Home({match}) {
 	const pathReg = new RegExp(/^\/(\w+)/)
-	const filter = pathReg.exec(match.url)[1]
+	// lol this is a lil gross
+	const filter = pathReg.test(match.url) ? pathReg.exec(match.url)[1] : "top"
 	const page = match.params.page || 1
 	const stories = useTopStories(filter, page)
 	return (
