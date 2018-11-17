@@ -20,11 +20,12 @@ export function useItemSubscription(id) {
 	return story
 }
 
-export function useTopStories(filter, page = 0) {
+export function useTopStories(filter, page = 1) {
 	const [stories, setStories] = useState({})
-	const maxPerPage = 30
-	const start = maxPerPage * page
+	const maxPerPage = 20
+	const start = maxPerPage * (page - 1)
 	const end = start + maxPerPage
+	console.log({start,end})
 	useEffect(() => {
 		const ref = storiesRef(filter)
 		ref.on('value', snapshot => {
@@ -35,6 +36,6 @@ export function useTopStories(filter, page = 0) {
 		return () => {
 			ref.off()
 		}
-	}, [filter])
+	}, [filter, page])
 	return stories
 }

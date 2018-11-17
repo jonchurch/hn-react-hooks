@@ -6,6 +6,7 @@ import Logo from '../logo.png'
 
 const StyledHeader = styled.header`
 	background-color: #ff6600;
+	position: fixed;
 	z-index: 999;
 	height: 55px;
 	top: 0;
