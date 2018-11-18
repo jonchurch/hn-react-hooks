@@ -39,7 +39,7 @@ export function useHiringRequest() {
 
 export function useTopStories(filter, page = 1) {
 	const refPath = storyFilter(filter)
-	const [stories, setStories] = useState({})
+	const [stories, setStories] = useState([])
 	const [maxPages, setMaxPages] = useState(1)
 	const maxPerPage = 40
 	const start = maxPerPage * (page - 1)

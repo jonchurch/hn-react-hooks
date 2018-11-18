@@ -81,7 +81,12 @@ export default function Home({history, match}) {
 	// lol this is a lil gross
 	const filter = pathReg.test(match.url) ? pathReg.exec(match.url)[1] : "top"
 	const page = match.params.page || 1
-	const [stories, maxPages] = useTopStories(filter, page)
+	// lets try something here...
+	let [stories, maxPages] = useTopStories(filter, page)
+	const jobs = useHiringRequest()
+	if (filter === 'jobs') {
+		stories = jobs.map(j => j.objectID).concat(stories)
+	}
 	if (page > maxPages || page < 1) {
 		// redirect if something funky goes on with our page number
 		return <Redirect to={`/${filter}`} />
@@ -91,7 +96,7 @@ export default function Home({history, match}) {
 			{
 				maxPages > 1 ? 
 				<ListNav filter={filter} page={page} maxPages={maxPages} />
-				: <Hiring />
+				: null
 			}
 		<div className="list">
 			{
