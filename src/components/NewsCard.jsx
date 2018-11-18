@@ -13,6 +13,7 @@ const StyledItemCard = styled.div`
 	border-bottom: 1px solid #eee
 
 	.score {
+		letter-spacing: 0.5px;
 		color: #f60;
 		position: absolute;
 		font-size: 1.1em;
@@ -34,6 +35,12 @@ const StyledItemCard = styled.div`
 			}
 		}
 	}
+	@media (max-width: 600px) {
+		padding: 20px 30px 20px 60px;
+		.score {
+		width: 60px;
+		}
+	}
 `
 
 export default function NewsCard({id}) {
@@ -43,7 +50,7 @@ export default function NewsCard({id}) {
 			<span className="score">
 			{story.score}
 			</span>
-			<span className="title">
+			<span>
 					<a 
 						href={story.url}
 					>{story.title}</a>
@@ -51,8 +58,7 @@ export default function NewsCard({id}) {
 				</span>
 				<br />
 				<span className="meta">
-					by {story.by} {timeAgo(story.time)} | 
-					<Link to={`/item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</Link>
+					by {story.by} {timeAgo(story.time)} | <Link to={`/item/${story.id}`}>{story.descendants ? `${story.descendants} comments`: "discuss"}</Link>
 			</span>
 		</StyledItemCard>
 	)
