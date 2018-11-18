@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { useTopStories } from '../hooks'
+import { useTopStories, useHiringRequest } from '../hooks'
 import NewsCard from './NewsCard.jsx'
 
 const Container = styled.div`
@@ -58,6 +58,21 @@ const ListNav = ({ filter, page, maxPages })=> {
 	)
 }
 
+const Hiring = props => {
+	const posts = useHiringRequest()
+	return (
+		<div className="list-nav">
+			<ul>
+				{posts.map(post => {
+					return (
+						<li style={{textAlign: "left"}}>{post.title}</li>
+					)
+				})}
+			</ul>
+		</div>
+	)
+}
+
 export default function Home({history, match}) {
 	console.log({match})
 	const pathReg = new RegExp(/^\/(\w+)/)
@@ -74,7 +89,7 @@ export default function Home({history, match}) {
 			{
 				maxPages > 1 ? 
 				<ListNav filter={filter} page={page} maxPages={maxPages} />
-				: null
+				: <Hiring />
 			}
 		<div className="list">
 			{
