@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { useTopStories } from '../hooks'
+import { useTopStories, useHiringRequest } from '../hooks'
 import NewsCard from './NewsCard.jsx'
 
 const Container = styled.div`
@@ -58,13 +58,33 @@ const ListNav = ({ filter, page, maxPages })=> {
 	)
 }
 
-export default function Home({history, match}) {
-	console.log({match})
-	const pathReg = new RegExp(/^\/(\w+)/)
-	// lol this is a lil gross
-	const filter = pathReg.test(match.url) ? pathReg.exec(match.url)[1] : "top"
+const Hiring = props => {
+	const posts = useHiringRequest()
+	return (
+		<div className="list-nav">
+			<ul>
+				{posts.map(({objectID, title})=> {
+					return (
+						<li key={objectID} style={{textAlign: "left"}}>
+							<Link to={`/item/${objectID}`}>{title}</Link>
+							</li>
+					)
+				})}
+			</ul>
+		</div>
+	)
+}
+
+export default function ListView({history, match}) {
+	console.log(match.params)
+	const filter = match.params.filter
 	const page = match.params.page || 1
-	const [stories, maxPages] = useTopStories(filter, page)
+	// lets try something here...
+	let [items, maxPages] = useTopStories(filter, page)
+	const jobs = useHiringRequest()
+	if (filter === 'jobs') {
+		items = jobs.map(j => j.objectID).concat(items)
+	}
 	if (page > maxPages || page < 1) {
 		// redirect if something funky goes on with our page number
 		return <Redirect to={`/${filter}`} />
@@ -78,8 +98,8 @@ export default function Home({history, match}) {
 			}
 		<div className="list">
 			{
-				stories.length && 
-				stories.map(id => <NewsCard id={id} key={id}/>)
+				items.length > 0 && 
+				items.map(id => <NewsCard id={id} key={id}/>)
 			}
 		</div>
 </Container>

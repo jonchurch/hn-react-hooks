@@ -41,7 +41,7 @@ const CommentContainer = styled.div`
 `
 const CommentChildren = styled.div`
 	${props => props.open ? null : "display: none;"}
-	margin-left: 1.5em;
+	margin-left: 1.25em;
 `
 
 function Toggle({open, onClick, kidCount }) {

@@ -50,6 +50,14 @@ const ItemComments = styled.div`
 		position: relative;
 	}
 
+	@media (max-width: 600px) {
+		padding: 0em 0.5em .5em
+		code {
+			white-space: pre-line;
+			font-size: 12px;
+	}
+	}
+
 `
 
 function LinkTitle(props) {
