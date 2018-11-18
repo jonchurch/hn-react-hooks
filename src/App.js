@@ -26,6 +26,9 @@ class App extends Component {
 			<Route exact path="/" render={props => <Home {...props} filter="top" />} />
 			<Route exact path="/top" component={Home} />
 			<Route path="/top/:page" component={Home} />
+		{
+			//<Route path="/:filter/:page" component={Home} />
+		}
 			<Route exact path="/new" component={Home} />
 			<Route path="/new/:page" component={Home} />
 			<Route exact path="/show" component={Home} />

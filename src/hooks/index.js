@@ -23,21 +23,24 @@ export function useItemSubscription(id) {
 export function useTopStories(filter, page = 1) {
 	const refPath = storyFilter(filter)
 	const [stories, setStories] = useState({})
+	const [maxPages, setMaxPages] = useState(1)
 	const maxPerPage = 20
 	const start = maxPerPage * (page - 1)
 	const end = start + maxPerPage
-	console.log({start,end})
 	useEffect(() => {
 		const ref = storiesRef(refPath)
 		ref.on('value', snapshot => {
-			const ids = snapshot.val().slice(start, end)
-			setStories(ids)
+			const ids = snapshot.val()
+			const page = ids.slice(start, end)
+			console.log('LIST LENGTH:',snapshot.val().length)
+			setStories(page)
+			setMaxPages(Math.ceil(ids.length / maxPerPage))
 		})
 		return () => {
 			ref.off()
 		}
 	}, [filter, page])
-	return stories
+	return [stories, maxPages]
 }
 function storyFilter(path) {
 	switch (path) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { useTopStories } from '../hooks'
@@ -40,25 +40,42 @@ const Container = styled.div`
 		color: #d3d3d3;
 	}
 `
+const ListNav = ({ filter, page, maxPages })=> {
+	return (
+		<div className="list-nav">
+			<Link 
+				to={`/${filter}/${page - 1}`}
+				className={page <= 1 ? "disabled" : null}
+			>&lt; prev</Link>
+		<span>
+			{page}/{maxPages}
+		</span>
+		<Link 
+			to={`/${filter}/${Number(page) + 1}`}
+			className={page >= maxPages ? "disabled" : null}
+		>next &gt;</Link>
+		</div>
+	)
+}
 
-export default function Home({match}) {
+export default function Home({history, match}) {
+	console.log({match})
 	const pathReg = new RegExp(/^\/(\w+)/)
 	// lol this is a lil gross
 	const filter = pathReg.test(match.url) ? pathReg.exec(match.url)[1] : "top"
 	const page = match.params.page || 1
-	const stories = useTopStories(filter, page)
+	const [stories, maxPages] = useTopStories(filter, page)
+	if (page > maxPages || page < 1) {
+		// redirect if something funky goes on with our page number
+		return <Redirect to={`/${filter}`} />
+	}
 	return (
 		<Container style={{position: "relative"}}>
-			<div className="list-nav">
-				<Link 
-					to={`/${filter}/${page - 1}`}
-					className={page <= 1 ? "disabled" : null}
-				>&lt; prev</Link>
-			<span>
-				{page}/24
-			</span>
-			<Link to={`/${filter}/${Number(page) + 1}`}>next &gt;</Link>
-			</div>
+			{
+				maxPages > 1 ? 
+				<ListNav filter={filter} page={page} maxPages={maxPages} />
+				: null
+			}
 		<div className="list">
 			{
 				stories.length && 
