@@ -63,9 +63,11 @@ const Hiring = props => {
 	return (
 		<div className="list-nav">
 			<ul>
-				{posts.map(post => {
+				{posts.map(({objectID, title})=> {
 					return (
-						<li style={{textAlign: "left"}}>{post.title}</li>
+						<li key={objectID} style={{textAlign: "left"}}>
+							<Link to={`/item/${objectID}`}>{title}</Link>
+							</li>
 					)
 				})}
 			</ul>
