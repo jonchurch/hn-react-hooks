@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { itemRef, storiesRef } from '../firebase'
 
+const WHOSHIRING_URL = "https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoishiring"
+
 export function useItemSubscription(id) {
 	const [story, setStory] = useState({})
 
@@ -22,14 +24,14 @@ export function useItemSubscription(id) {
 
 export function useHiringRequest() {
 	const [hiring, setHiring] = useState([])
-	const freelance = new RegExp(/^Ask HN: Freelancer\?/)
-	const wanted  = new RegExp(/^Ask HN: Who is hiring\?/)
-	const fulltime = new RegExp(/^Ask HN: Who wants to be hired\?/)
-	const checkFreelance = obj => freelance.test(obj.title)
+	// const freelance = new RegExp(/^Ask HN: Freelancer\?/)
+	// const wanted  = new RegExp(/^Ask HN: Who is hiring\?/)
+	// const fulltime = new RegExp(/^Ask HN: Who wants to be hired\?/)
+	// const checkFreelance = obj => freelance.test(obj.title)
 	
 	useEffect(async () => {
-		const res = await window.fetch("https://hn.algolia.com/api/v1/search_by_date?tags=story,author_whoishiring").then(res => res.json())
-		console.log({res})
+		const res = await fetch(WHOSHIRING_URL).then(res => res.json())
+		// console.log({res})
 		const posts = res.hits.slice(0,3)
 		setHiring(posts)
 	},[])

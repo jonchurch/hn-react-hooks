@@ -75,17 +75,15 @@ const Hiring = props => {
 	)
 }
 
-export default function Home({history, match}) {
-	console.log({match})
-	const pathReg = new RegExp(/^\/(\w+)/)
-	// lol this is a lil gross
-	const filter = pathReg.test(match.url) ? pathReg.exec(match.url)[1] : "top"
+export default function ListView({history, match}) {
+	console.log(match.params)
+	const filter = match.params.filter
 	const page = match.params.page || 1
 	// lets try something here...
-	let [stories, maxPages] = useTopStories(filter, page)
+	let [items, maxPages] = useTopStories(filter, page)
 	const jobs = useHiringRequest()
 	if (filter === 'jobs') {
-		stories = jobs.map(j => j.objectID).concat(stories)
+		items = jobs.map(j => j.objectID).concat(items)
 	}
 	if (page > maxPages || page < 1) {
 		// redirect if something funky goes on with our page number
@@ -100,8 +98,8 @@ export default function Home({history, match}) {
 			}
 		<div className="list">
 			{
-				stories.length && 
-				stories.map(id => <NewsCard id={id} key={id}/>)
+				items.length > 0 && 
+				items.map(id => <NewsCard id={id} key={id}/>)
 			}
 		</div>
 </Container>
