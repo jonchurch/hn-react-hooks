@@ -77,7 +77,7 @@ const Hiring = props => {
 
 export default function ListView({history, match}) {
 	console.log(match.params)
-	const filter = match.params.filter
+	const filter = match.params.filter || "top"
 	const page = match.params.page || 1
 	// lets try something here...
 	let [items, maxPages] = useTopStories(filter, page)
