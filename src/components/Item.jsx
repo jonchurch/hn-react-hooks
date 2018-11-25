@@ -40,7 +40,8 @@ const ItemHeader = styled.div`
 
 const ItemComments = styled.div`
 	background-color: #fff;
-	margin-top: 10px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 	padding: 0 2em .5em;
 
 	.comments-header {
