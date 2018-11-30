@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/hn-react-hooks/static/js/runtime~main.4bdfb21f.js"
   },
   {
-    "revision": "3535ca40ef01e02cba7a",
-    "url": "/hn-react-hooks/static/js/main.3535ca40.chunk.js"
+    "revision": "2f444464583203e80f6f",
+    "url": "/hn-react-hooks/static/js/main.2f444464.chunk.js"
   },
   {
     "revision": "9efd3c6e27cac30d8151",
     "url": "/hn-react-hooks/static/js/1.9efd3c6e.chunk.js"
   },
   {
-    "revision": "3535ca40ef01e02cba7a",
+    "revision": "2f444464583203e80f6f",
     "url": "/hn-react-hooks/static/css/main.4513e193.chunk.css"
   },
   {
-    "revision": "a0ad5780b36b97db1a6afa7525b89247",
+    "revision": "36c14c4f44e5ff1255d9ed6e16fe58a6",
     "url": "/hn-react-hooks/index.html"
   }
 ];
