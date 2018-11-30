@@ -42,7 +42,6 @@ const StyledItemCard = styled.div`
 		}
 	}
 `
-
 export default function NewsCard({id}) {
 	const story = useItemSubscription(id)
 	return (
@@ -50,10 +49,12 @@ export default function NewsCard({id}) {
 			<span className="score">
 			{story.score}
 			</span>
-			<span>
-					<a 
-						href={story.url}
-					>{story.title}</a>
+            <span>
+                {
+                    story.url ? 
+                    <a href={story.url}>{story.title}</a> :
+                    <Link to={`/item/${story.id}`}>{story.title}</Link>
+                }
 					{story.url ? <span className="host">{` (${host(story.url)})`}</span> : null }
 				</span>
 				<br />
